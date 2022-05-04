@@ -21,7 +21,6 @@ module.exports = {
         content: "what the is up?", 
         ephemeral: false, // only visible to the person executing the command 
     });
-
     },
 };
 

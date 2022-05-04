@@ -2,6 +2,7 @@ require("dotenv").config();
 const prefix  = require('./prefix.js')
 const fs      = require("fs")
 
+const db = require("./config/database"); // fetching database 
 const {Client, Intents} = require("discord.js");
 const { Collection } = require("discord.js");
 
@@ -10,7 +11,13 @@ const client = new Client({
 
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.GUILD_MEMBERS
+        Intents.FLAGS.GUILD_MEMBERS,
+    ], 
+    //  For reactions
+    partials:[
+        "MESSAGE", 
+        "CHANNEL", 
+        "REACTION",
     ]
 });
 
@@ -35,7 +42,7 @@ for(const file of commandFiles)
 
 /*
 * Event files below
- */
+*/
 
 const eventFiles = fs.readdirSync("./events").filter(file => file.endsWith(".js"));
 

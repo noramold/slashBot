@@ -1,6 +1,5 @@
 module.exports = {
     name: "interactionCreate",
-    once: true, //only want to run once 
 
     async execute(interaction){
 
@@ -13,7 +12,8 @@ module.exports = {
             await command.execute(interaction);
             // throw new Error("Command not implemented"); // throwing error to see if it catches
         }catch(err){
-            console.error(err);
+            if (err) console.error(err);
+
             await interaction.reply({
 
                 content: "An error occured while executing the command!", 
