@@ -12,9 +12,12 @@
   "dependencies": {
     "@discordjs/builders": "^0.13.0",
     "@discordjs/rest": "^0.4.1",
+    "ascii-table": "^0.0.9",
+    "discord-api-types": "^0.32.1",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
-    "mongoose": "^6.3.2"
+    "mongoose": "^6.3.2",
+    "reddit-fetch": "^1.5.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

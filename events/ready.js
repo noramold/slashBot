@@ -12,7 +12,7 @@ module.exports = {
 
         console.log(`${client.user.username} is now online!`);
         // client.user.setActivity(`${prefix}`+"help", { type: "PLAYING" });
-        client.user.setActivity("Welcome nerds!", { type: "PLAYING" }); // just some fun stuff 
+        client.user.setActivity(process.env.PLAYING_MSG, { type: "PLAYING" }); // just some fun stuff 
     
         const CLIENT_ID = client.user.id; // for slash commands 
     
