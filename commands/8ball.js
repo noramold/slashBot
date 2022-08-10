@@ -1,32 +1,43 @@
 
 
 const {SlashCommandBuilder} = require("@discordjs/builders")
-const redditFetch = require('reddit-fetch')
+const Discord = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("8ball")
         .setDescription("Predict your present/future")
         .addStringOption((option) =>
-        option
-            .setName("question")
-            .setDescription("Ask the magic ball ball 🎱")
-            .setRequired(true) // has to send a message 
-    ),
+            option
+                .setName("question")
+                .setDescription("Ask the magic ball ball 🎱")
+                .setRequired(true) // has to send a message 
+        ),
+
+    // async execute(interaction){
+    //     interaction.reply({
+    //         content: interaction.options.getString("question"), 
+    //         ephemeral: false, // only visible to the person executing the command 
     async execute(interaction){
 
         // eight = Math.floor(Math.random()*(ball.length));
         var item = ball[Math.floor(Math.random()*ball.length)];
-
+        
+        const question = interaction.options.getString("question") 
+        
+        var embed = new Discord.MessageEmbed()
+        .setTitle(question)
+        .setDescription(item)
         // console.log(item)
         interaction.reply({
+            // content: question,
+            // content: item, 
             // content: interaction.options.getString("message"), 
-            content: item,
-            ephemeral: false, // only visible to the person executing the command 
+            embeds: [embed]
+            // ephemeral: false, // only visible to the person executing the command 
         });
     }
 };
-
 
 var ball = [
     "As I see it, yes.",
