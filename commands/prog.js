@@ -15,38 +15,34 @@ module.exports = {
     ),
     async execute(interaction){
 
-        if(interaction.options.getString("message").toLowerCase() === "new"){
+        switch(interaction.options.getString("message").toLowerCase()){
 
-            redditFetch({
+            case "new":
+                redditFetch({
 
-                subreddit: 'ProgrammerHumor/',
-                sort: 'new', 
+                    subreddit: 'ProgrammerHumor/',
+                    sort: 'new', 
                 allowNSFW: true,
                 allowModPost: true, 
                 allowCrossPost: true, 
-            
+                
             }).then(post => {
-                // var embed = new Discord.MessageEmbed()
-                // .setURL(`${post.url}`)
-                // .setDescription("A meme for you")
-                // message.ch*annel.send(`${post.url}`);
                 interaction.reply({
                     // content: interaction.options.getString("message"), 
                     content: `${post.url}`,
                     ephemeral: false, // only visible to the person executing the command 
                 });
             });
-        }
-        else if(interaction.options.getString("message").toLowerCase() === "top"){
-
+            break;
+        case "top":            
             redditFetch({
-
+                
                 subreddit: 'ProgrammerHumor/',
                 sort: 'top', 
                 allowNSFW: true,
                 allowModPost: true, 
                 allowCrossPost: true, 
-            
+                
             }).then(post => {
                 // var embed = new Discord.MessageEmbed()
                 // .setURL(`${post.url}`)
@@ -58,11 +54,10 @@ module.exports = {
                     ephemeral: false, // only visible to the person executing the command 
                 });
             });
-        }
-        else if(interaction.options.getString("message").toLowerCase() === "hot"){
-
+            break;
+        case "hot":            
             redditFetch({
-
+                
                 subreddit: 'ProgrammerHumor/',
                 sort: 'hot', 
                 allowNSFW: true,
@@ -80,14 +75,14 @@ module.exports = {
                     ephemeral: false, // only visible to the person executing the command 
                 });
             });
-        }
-        else{
+            break;
+        default:
             interaction.reply({
                 // content: interaction.options.getString("message"), 
                 content: "You have to use 'hot', 'new' or 'top'",
                 ephemeral: false, // only visible to the person executing the command 
             });
-        }
+        }   
 
 
         
